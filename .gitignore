@@ -140,5 +140,6 @@ dmypy.json
 .DS_Store
 =======
 .DS_Store
-.Identifier
->>>>>>> 27478d2... Add initial version of dataset.
+
+#Miscellaneous files
+*.csv
