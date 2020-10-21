@@ -25,10 +25,26 @@ for i in df.columns:
                 except:
                     print(df[i][j], id)
     else:
-        num = random.randrange(0, percentage)
-        for j in range(num, df[i].size, percentage):
-            try:
-                df[i][j] *= -1
-            except:
-                print(df[i][j])
+        try:
+            #df[i] = df.astype("float64")
+            for j in range(df[i].size):
+                try:
+                    ran_num = random.random()
+                    if (ran_num < 0.5):
+                        sign = random.random()
+                        if (sign < 0.5):
+                            sign = -1
+                        else:
+                            sign = 1
+                        df[i][j] = round(df[i][j] + sign * ran_num, 2)
+                except:
+                    print(df[i][j])
+            num = random.randrange(0, percentage)
+            for j in range(num, df[i].size, percentage):
+                try:
+                    df[i][j] *= -1
+                except:
+                    print(df[i][j])
+        except:
+            print(df[i].dtype)
 df.to_csv("../datasets/Full/players_20_soiled.csv")
