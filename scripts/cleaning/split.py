@@ -2,9 +2,9 @@ import pandas as pd
 import os
 
 class Dataset:
-    RAW_FILE_PATH = "../datasets/Full/players_20.csv"
-    DATA_FILE_PATH = "../datasets/Full/players_20_filtered.csv"
-    OUTPUT_DIRECTORY = "../datasets/Positionwise"
+    RAW_FILE_PATH = "../../datasets/Full/players_20.csv"
+    DATA_FILE_PATH = "../../datasets/Full/players_20.csv"
+    OUTPUT_DIRECTORY = "../../datasets/Positionwise"
 
     USELESS_ATTRIBUTES = {
         'all': ['ls', 'st', 'rs', 'lw', 'lf', 'cf', 'rf', 'rw', 'lam', 'cam', 'ram', 'lm', 'lcm', 'cm',
@@ -40,7 +40,7 @@ class Dataset:
         df.to_csv(DATA_FILE_PATH, index=True)
 
     def __read_filtered_data(self, DATA_FILE_PATH):
-        self.data = pd.read_csv(DATA_FILE_PATH)
+        self.data = pd.read_csv(DATA_FILE_PATH, index_col=0)
 
     def __split_by_position(self):
         positionwise_data = dict()
@@ -71,7 +71,7 @@ class Dataset:
         if not OUTPUT_DIRECTORY:
             OUTPUT_DIRECTORY = self.OUTPUT_DIRECTORY
 
-        self.filter_data(RAW_FILE_PATH=RAW_FILE_PATH, DATA_FILE_PATH=DATA_FILE_PATH)
+        #self.filter_data(RAW_FILE_PATH=RAW_FILE_PATH, DATA_FILE_PATH=DATA_FILE_PATH)
         self.__read_filtered_data(DATA_FILE_PATH=DATA_FILE_PATH)
         self.__split_by_position()
         self.__filter_split_data()
