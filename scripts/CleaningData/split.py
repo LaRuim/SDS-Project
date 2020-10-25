@@ -2,9 +2,9 @@ import pandas as pd
 import os
 
 class Dataset:
-    RAW_FILE_PATH = "../datasets/Full/players_20.csv"
-    DATA_FILE_PATH = "../datasets/Full/players_20_filtered.csv"
-    OUTPUT_DIRECTORY = "../datasets/Positionwise"
+    RAW_FILE_PATH = "../../datasets/Full/players_20.csv"
+    DATA_FILE_PATH = "../../datasets/Full/players_20_filtered.csv"
+    OUTPUT_DIRECTORY = "../../datasets/Positionwise"
 
     USELESS_ATTRIBUTES = {
         'all': ['ls', 'st', 'rs', 'lw', 'lf', 'cf', 'rf', 'rw', 'lam', 'cam', 'ram', 'lm', 'lcm', 'cm',
