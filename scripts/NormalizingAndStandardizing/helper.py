@@ -1,31 +1,31 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
 import scipy
+from sklearn.preprocessing import MinMaxScaler
 
 
-def getZscore(array):
-    return (array - array.mean(axis=0)) / array.std(axis=0)
+class NormStd:
+    def __init__(self, dfColumn):
+        self.array = np.array(dfColumn)
 
+    def getZscore(self, array):
+        return scipy.stats.zscore(array)
 
-def getPvalue(array):
-    return scipy.stats.norm.sf(abs(array)) * 2
+    def getPvalue(self, array):
+        return scipy.stats.norm.sf(abs(array)) * 2
 
+    def normalize(self, array):
+        return self.array / np.linalg.norm(self.array)
 
-def normalize(array):
-    newArray = (array - array.min()) / (array.max() - array.min())
-    return newArray
-
-
-def getValues(array):
-    values = {'mean': array.mean(), 'variance': array.var(
-    ), 'normalized': normalize(array), 'z-score': getZscore(array)}
-    normArr = values['normalized']
-    values['normMean'] = round(normArr.mean(), 3)
-    values['normVar'] = round(normArr.var(), 3)
-    values['pValue']: getPvalue(values['z-score'])
-    zscoreArr = values['z-score']
-    values['stdMean'] = round(zscoreArr.mean(), 3)
-    values['stdVar'] = round(zscoreArr.var(), 3)
-    return values
+    def getValues(self, label, mainDictionary=dict()):
+        values = {'mean': self.array.mean(), 'variance': self.array.var(
+        ), 'normalized': self.normalize(self.array), 'z-score': self.getZscore(self.array)}
+        normArr = values['normalized']
+        values['normMean'] = round(normArr.mean(), 3)
+        values['normVar'] = round(normArr.var(), 3)
+        values['pValue']: self.getPvalue(np.array(values['z-score']))
+        zscoreArr = values['z-score']
+        values['stdMean'] = round(zscoreArr.mean(), 3)
+        values['stdVar'] = round(zscoreArr.var(), 3)
+        values['inputArray'] = self.array
+        mainDictionary[label] = values
+        return mainDictionary
