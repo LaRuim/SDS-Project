@@ -136,14 +136,8 @@ dmypy.json
 
 
 # System files
-<<<<<<< HEAD
 .DS_Store
-=======
-.DS_Store
+.Identifier
 
 #Miscellaneous files
 soil.py
-players_20_raw.csv
-players_20_old.csv
-players_20_filtered.csv
-similarity.py
