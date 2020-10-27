@@ -33,9 +33,9 @@ X = np.array(dataset[['attacking_crossing',
        'attacking_short_passing', 'attacking_volleys',]])
 y = np.array(dataset[['overall']])
 
-X
+# X
 
-y
+# y
 
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2)
 
@@ -61,7 +61,7 @@ print("test loss, test acc:", results)
 
 model.predict([[88, 95, 70, 92, 88]])
 
-X_test[-1]
+# X_test[-1]
 
-y_test[-1]
+# y_test[-1]
 
