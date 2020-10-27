@@ -3,10 +3,28 @@ import numpy as np
 from numpy import dot
 from numpy.linalg import norm
 import time
+import logging
+from tqdm import tqdm
+import sys
 
-for position in ['free_roamers', 'full_backs', 'midfielders', 'strikers', 'wingers', 'centre_backs']:
+if not sys.warnoptions:
+    import warnings
+    warnings.simplefilter("ignore")
+
+logging.basicConfig(level= logging.DEBUG, filename="clean.log", filemode="w")
+
+print("\n")
+print("#"*5, end = '')
+print("CLEANING DATA", end='')
+print("#"*5)
+print("\n")
+
+listPosition = ['free_roamers', 'full_backs', 'midfielders', 'strikers', 'wingers', 'centre_backs']
+for pos in (range(len(listPosition))):
+    print("\nFor position: ", listPosition[pos])
+    position = listPosition[pos]
     DATA_CSV = f"../../datasets/Positionwise/{position}.csv" # Make positionwise
-    print(f'\nNow cleaning {position}.csv\n')
+    logging.debug(f'\nNow cleaning {position}.csv\n')
     data = pd.read_csv(DATA_CSV)
     try:
         data.drop('Unnamed: 0', axis=1, inplace=True)
@@ -51,8 +69,7 @@ for position in ['free_roamers', 'full_backs', 'midfielders', 'strikers', 'winge
     weights_changed = 0
     height_changes_simple = 0
     weight_changes_simple = 0
-
-    for row in range(dataset_size):
+    for row in tqdm(range(dataset_size), desc = "Height-Weight", ncols = 100 ):
         
         if data['height_cm'][row] < 0:
             old_height = data['height_cm'][row]
@@ -71,11 +88,11 @@ for position in ['free_roamers', 'full_backs', 'midfielders', 'strikers', 'winge
                         new_height = round((all_heights[possible_weight_index] + all_heights[possible_weight_index+1])/2, 1)
             if new_height < 0:
                 data.loc[row, 'height_cm'] = -data['height_cm'][row]
-                print(f"Failed in changing {data['short_name'][row]}'s height; Changed instead to negative of itself.")
+                logging.debug(f"Failed in changing {data['short_name'][row]}'s height; Changed instead to negative of itself.")
                 height_changes_simple += 1
             else:
                 data.loc[row, 'height_cm'] = new_height
-                print(f"Converted {data['short_name'][row]}'s height from {old_height} to {data['height_cm'][row]}.")
+                logging.debug(f"Converted {data['short_name'][row]}'s height from {old_height} to {data['height_cm'][row]}.")
                 heights_changed += 1
 
         elif data['weight_kg'][row] < 0:
@@ -95,17 +112,19 @@ for position in ['free_roamers', 'full_backs', 'midfielders', 'strikers', 'winge
                         new_weight = round((all_weights[possible_height_index] + all_weights[possible_height_index+1])/2, 1)
             if new_weight < 0:
                 data.drop([row])
-                print(f"Failed in changing {data['short_name'][row]}'s weight; It was still {old_weight}")
+                logging.debug(f"Failed in changing {data['short_name'][row]}'s weight; It was still {old_weight}")
                 weight_changes_simple += 1
             else:
                 data.loc[row, 'weight_kg'] = new_weight
-                print(f"Converted {data['short_name'][row]}'s weight from {old_weight} to {data['weight_kg'][row]}.")
+                logging.debug(f"Converted {data['short_name'][row]}'s weight from {old_weight} to {data['weight_kg'][row]}.")
                 weights_changed += 1
 
-    print(f"Heights changed: {heights_changed}\nHeight changes with sign inversion: {height_changes_simple}")
-    print(f"Weights changed: {weights_changed}\nWeight changes with sign inversion: {weight_changes_simple}")
+    logging.debug(f"Heights changed: {heights_changed}\nHeight changes with sign inversion: {height_changes_simple}")
+    logging.debug(f"Weights changed: {weights_changed}\nWeight changes with sign inversion: {weight_changes_simple}")
 
     data.to_csv(f"../../datasets/Positionwise/{position}.csv" ) # Save height and weight corrections
+    
+
 
 
 
@@ -144,11 +163,11 @@ for position in ['free_roamers', 'full_backs', 'midfielders', 'strikers', 'winge
         try:
             players = only_numeric_attributes.drop(labels[attribute_index], axis=1).transpose()
         except:
-            print("Only Numeric Attrs:", only_numeric_attributes)
+            logging.debug("Only Numeric Attrs:", only_numeric_attributes)
         try:
             player_data = player_data.drop(labels[attribute_index])
         except:
-            print("Player Data:", player_data)
+            logging.debug("Player Data:", player_data)
         BEST_COSINE_DISTANCE = 0.75
         best_match = None
         for index in players:
@@ -158,34 +177,35 @@ for position in ['free_roamers', 'full_backs', 'midfielders', 'strikers', 'winge
                 continue
             try:
                 cosine_distance = (player_data @ similar_player.transpose()) / (norm(player_data)*norm(similar_player.transpose()))
-                #print(cosine_distance)
+                #logging.debug(cosine_distance)
                 if cosine_distance > BEST_COSINE_DISTANCE and round(cosine_distance, 4) != 1.0000:
                     best_match = data.transpose()[index]['index']
                     best_match_name = data.transpose()[index]['short_name']
                     BEST_COSINE_DISTANCE = cosine_distance
             except Exception as E:
-                print(E)
-                print(f"Shapes:\nCol: {player_data.shape}, simplayer: {similar_player.shape}")
-                print(list(player_data.keys()))
-                print('AND')
-                print(list(similar_player.keys()))
+                logging.debug(E)
+                logging.debug(f"Shapes:\nCol: {player_data.shape}, simplayer: {similar_player.shape}")
+                logging.debug(list(player_data.keys()))
+                logging.debug('AND')
+                logging.debug(list(similar_player.keys()))
         if best_match:
-            print(f'Best match for {name} was {best_match_name}, with similarity: {BEST_COSINE_DISTANCE}')
+            logging.debug(f'Best match for {name} was {best_match_name}, with similarity: {BEST_COSINE_DISTANCE}')
         else:
-            print(f'No best match for {name}.')
+            logging.debug(f'No best match for {name}.')
         return best_match, BEST_COSINE_DISTANCE
         
     transposed_data = data.transpose()
     dataset_t_size = len(transposed_data.index)
     indices = list(transposed_data.columns)
 
-    for player_index in indices:
+
+    for player_idx in tqdm(range(len(indices)),desc = "Other Attributes",ncols = 100):
+        player_index = indices[player_idx]
         similar_player = None  
-        
         for attribute_index in range(labels.index('team_position')+1, dataset_t_size):
             if type(transposed_data[player_index][attribute_index]) in [int, float]:
                 if transposed_data[player_index][attribute_index] < 0:
-                    print(f"{player_index+1}. ", end='')
+                    logging.debug(f"{player_index+1}.")
                     x, cosine_distance = find_player(transposed_data[player_index], attribute_index)
                     if cosine_distance > 0.75 and x:
                         write_val = data[x:x+1].values[0][attribute_index]
@@ -198,6 +218,8 @@ for position in ['free_roamers', 'full_backs', 'midfielders', 'strikers', 'winge
                     else:
                         transposed_data.loc[labels[attribute_index], player_index] = -transposed_data[player_index][attribute_index]
                         data.loc[player_index, labels[attribute_index]] = -transposed_data[player_index][attribute_index]
+        
     data = transposed_data.transpose()
 
     data.to_csv(f"../../datasets/Positionwise/{position}.csv" )
+    

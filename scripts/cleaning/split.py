@@ -1,5 +1,21 @@
+from pathlib import PosixPath
 import pandas as pd
 import os
+from tqdm import tqdm
+import logging
+import sys
+
+if not sys.warnoptions:
+    import warnings
+    warnings.simplefilter("ignore")
+    
+logging.basicConfig(level= logging.DEBUG, filename="split.log", filemode="w")
+
+print("\n")
+print("#"*5, end = '')
+print("SPLITTING DATA", end='')
+print("#"*5)
+print("\n")
 
 class Dataset:
     DATA_FILE_PATH = "../../datasets/Full/players_20.csv"
@@ -44,7 +60,8 @@ class Dataset:
 
     def __filter_split_data(self):
         for position in self.positionwise_data:
-            for useless_attribute in self.USELESS_ATTRIBUTES[position]:
+            for useless_attribute_idx in tqdm(range(len(self.USELESS_ATTRIBUTES[position])), desc = f"{position}", ncols = 100):
+                useless_attribute = self.USELESS_ATTRIBUTES[position][useless_attribute_idx]
                 self.positionwise_data[position].drop(useless_attribute, axis=1, inplace=True)
         #list(map(lambda position: map(lambda useless_attribute: self.positionwise_data[position].drop(useless_attribute, axis=1, inplace=True), self.USELESS_ATTRIBUTES[position]), self.positionwise_data.keys()))
 
