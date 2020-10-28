@@ -18,7 +18,7 @@ class NormStd:
     def __normalize_the_array_using_this_function(self, array):
         return array / np.linalg.norm(array)
 
-    def NormalizeAndStandardize(self, label, mainDictionary=dict()):
+    def NormalizeAndStandardize(self):
         values = {'mean': self.__array.mean(), 'variance': self.__array.var(
         ), 'normalized': self.__normalize_the_array_using_this_function(self.__array), 'z-score': self.__obtain_the_Z_score_value(self.__array)}
         normArr = values['normalized']
@@ -30,5 +30,12 @@ class NormStd:
         values['stdMean'] = round(zscoreArr.mean(), 3)
         values['stdVar'] = round(zscoreArr.var(), 3)
         values['inputArray'] = self.__array
-        mainDictionary[label] = values
-        return mainDictionary
+        newValues = {
+            'Original Mean': round(values['mean'], 2),
+            'Original Variance': round(values['variance'], 2),
+            'Normalized Mean': round(values['normMean'], 2),
+            'Normalized Variance': round(values['normVar'], 2),
+            'Standardized Mean': round(values['stdMean'], 2),
+            'Standardized Variance': round(values['stdVar'], 2)
+        }
+        return newValues
