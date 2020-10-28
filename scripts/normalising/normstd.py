@@ -4,9 +4,17 @@ import numpy as np
 from helper import NormStd
 import os
 
-Path_to_csv = ['../../datasets/Positionwise/centre_backs.csv', ]
-# Add all the paths to CSV here
-# Make sure it is in the same format
+
+print("\n")
+print("#"*5, end='')
+print("NORMALIZING AND STANDARDIZING DATA", end='')
+print("#"*5)
+print("\n")
+
+Path_to_csv = ['../../datasets/Positionwise/centre_backs.csv', '../../datasets/Positionwise/free_roamers.csv',
+               '../../datasets/Positionwise/full_backs.csv', '../../datasets/Positionwise/midfielders.csv',
+               '../../datasets/Positionwise/strikers.csv', '../../datasets/Positionwise/wingers.csv']
+
 OUTPUT_DIRECTORY = f'./Values'
 if not os.path.exists(OUTPUT_DIRECTORY):
     os.mkdir(OUTPUT_DIRECTORY)

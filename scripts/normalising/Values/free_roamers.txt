@@ -1,0 +1,312 @@
+Column Name: Unnamed: 0
+	Original Mean
+		175.0
+	Original Variance
+		10266.67
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: index
+	Original Mean
+		175.0
+	Original Variance
+		10266.67
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: age
+	Original Mean
+		26.75
+	Original Variance
+		20.23
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: height_cm
+	Original Mean
+		177.14
+	Original Variance
+		35.59
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: weight_kg
+	Original Mean
+		71.87
+	Original Variance
+		31.99
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: overall
+	Original Mean
+		70.95
+	Original Variance
+		42.21
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: attacking_crossing
+	Original Mean
+		64.2
+	Original Variance
+		117.53
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		-0.0
+	Standardized Variance
+		1.0
+Column Name: attacking_finishing
+	Original Mean
+		64.52
+	Original Variance
+		80.67
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: attacking_short_passing
+	Original Mean
+		70.82
+	Original Variance
+		55.44
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: skill_dribbling
+	Original Mean
+		71.83
+	Original Variance
+		53.77
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: skill_curve
+	Original Mean
+		66.79
+	Original Variance
+		133.56
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: skill_fk_accuracy
+	Original Mean
+		63.42
+	Original Variance
+		162.55
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: skill_long_passing
+	Original Mean
+		65.95
+	Original Variance
+		74.66
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: skill_ball_control
+	Original Mean
+		72.24
+	Original Variance
+		53.03
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		-0.0
+	Standardized Variance
+		1.0
+Column Name: movement_acceleration
+	Original Mean
+		71.59
+	Original Variance
+		94.35
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: movement_sprint_speed
+	Original Mean
+		70.5
+	Original Variance
+		78.28
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		-0.0
+	Standardized Variance
+		1.0
+Column Name: movement_agility
+	Original Mean
+		75.61
+	Original Variance
+		73.6
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		-0.0
+	Standardized Variance
+		1.0
+Column Name: movement_reactions
+	Original Mean
+		67.22
+	Original Variance
+		73.58
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		-0.0
+	Standardized Variance
+		1.0
+Column Name: movement_balance
+	Original Mean
+		74.73
+	Original Variance
+		90.48
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: power_stamina
+	Original Mean
+		13.54
+	Original Variance
+		4.36
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: power_strength
+	Original Mean
+		11.74
+	Original Variance
+		5.35
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: mentality_vision
+	Original Mean
+		13.56
+	Original Variance
+		3.13
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: mentality_penalties
+	Original Mean
+		12.11
+	Original Variance
+		4.49
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		0.0
+	Standardized Variance
+		1.0
+Column Name: mentality_composure
+	Original Mean
+		13.19
+	Original Variance
+		3.69
+	Normalized Mean
+		0.05
+	Normalized Variance
+		0.0
+	Standardized Mean
+		-0.0
+	Standardized Variance
+		1.0
