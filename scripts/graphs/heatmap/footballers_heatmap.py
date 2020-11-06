@@ -8,8 +8,12 @@ from bokeh.palettes import brewer
 from bokeh.layouts import widgetbox, row, column
 
 shapefile = './assets/countries/ne_110m_admin_0_countries.shp'
-datafile = '../../../datasets/Full/players_20.csv'
-df = pd.read_csv(datafile, encoding= 'cp1252')
+datafiles = []
+PATH = '../../../datasets/Positionwise/{}.csv'
+for position in 'full_backs', 'centre_backs', 'midfielders', 'wingers', 'free_roamers', 'strikers':
+    datafiles.append(pd.read_csv(PATH.format(position))['nationality'])
+
+df = pd.concat(datafiles).reset_index()
 
 gdf = gpd.read_file(shapefile)[['ADMIN', 'ADM0_A3', 'geometry']]
 gdf.columns = ['country', 'country_code', 'geometry']

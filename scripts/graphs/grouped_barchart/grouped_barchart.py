@@ -51,12 +51,12 @@ def plotHeighWeight(dfCol, name, width = 0.25, nrows = 5, image_width = 12, imag
 
     plt.show()
 
-POS_LIST = ["../../datasets/Positionwise/centre_backs.csv",
-"../../datasets/Positionwise/free_roamers.csv",
-"../../datasets/Positionwise/full_backs.csv",
-"../../datasets/Positionwise/midfielders.csv",
-"../../datasets/Positionwise/strikers.csv",
-"../../datasets/Positionwise/wingers.csv"]
+POS_LIST = ["../../../datasets/Positionwise/centre_backs.csv",
+"../../../datasets/Positionwise/free_roamers.csv",
+"../../../datasets/Positionwise/full_backs.csv",
+"../../../datasets/Positionwise/midfielders.csv",
+"../../../datasets/Positionwise/strikers.csv",
+"../../../datasets/Positionwise/wingers.csv"]
 for i in range(len(POS_LIST)):
     plotHeighWeight(pd.read_csv(POS_LIST[i]), POS_LIST[i][46:-4])
 

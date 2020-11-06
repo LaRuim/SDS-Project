@@ -15,12 +15,12 @@ Path_to_csv = ['../../datasets/Positionwise/centre_backs.csv', '../../datasets/P
                '../../datasets/Positionwise/full_backs.csv', '../../datasets/Positionwise/midfielders.csv',
                '../../datasets/Positionwise/strikers.csv', '../../datasets/Positionwise/wingers.csv']
 
-OUTPUT_DIRECTORY = f'./Values'
+OUTPUT_DIRECTORY = f'./logs'
 if not os.path.exists(OUTPUT_DIRECTORY):
     os.mkdir(OUTPUT_DIRECTORY)
 
 for csv in Path_to_csv:
-    OUTPUT_DIRECTORY_FILE = f'./Values/{csv[28:-3]}txt'
+    OUTPUT_DIRECTORY_FILE = f'./logs/{csv[28:-3]}txt'
 
     file = open(OUTPUT_DIRECTORY_FILE, 'w')
     df = pd.read_csv(csv)

@@ -33,9 +33,9 @@ callbacks = [
 #Function reference for standardizing
 scaler = StandardScaler()
 
-PATH_LIST = ['../../datasets/Positionwise/centre_backs.csv', '../../datasets/Positionwise/free_roamers.csv',
-               '../../datasets/Positionwise/full_backs.csv', '../../datasets/Positionwise/midfielders.csv',
-               '../../datasets/Positionwise/strikers.csv', '../../datasets/Positionwise/wingers.csv']
+PATH_LIST = ['../../../datasets/Positionwise/centre_backs.csv', '../../../datasets/Positionwise/free_roamers.csv',
+               '../../../datasets/Positionwise/full_backs.csv', '../../../datasets/Positionwise/midfielders.csv',
+               '../../../datasets/Positionwise/strikers.csv', '../../../datasets/Positionwise/wingers.csv']
 
 for i in tqdm(range(len(PATH_LIST)), desc = "Training Model", ncols = 100):
 
@@ -71,14 +71,14 @@ for i in tqdm(range(len(PATH_LIST)), desc = "Training Model", ncols = 100):
     history = model.fit(X_train,y_train,batch_size = 20,shuffle=True,verbose=0,epochs = 5000, callbacks=callbacks)
 
     #Saving weights
-    model.save_weights(f"./Weights/{PATH[28:-4]}.h5")
+    model.save_weights(f"./weights/{PATH[28:-4]}.h5")
 
     # #Evaluating model
     print("Evaluate on test data")
     results = model.evaluate(X_test, y_test, batch_size=20)
     print("test loss, test acc:", results)
 
-    fileName = f"./Output/{PATH[28:-4]}.txt"
+    fileName = f"./output/{PATH[28:-4]}.txt"
     with open(fileName, 'w') as file:
         modelOutput = model.predict(X_test)
         for i in range(len(y_test)):
